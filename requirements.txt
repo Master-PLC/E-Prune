@@ -20,10 +20,12 @@
 # pip install -r requirements/build.txt
 # pip install --no-build-isolation -e .
 
-### maybe extra steps for other system cuda, however, we haven't validated
+### maybe extra steps for other system cuda to install vllm, however, we haven't validated
 # python use_existing_torch.py
 # pip install -r requirements/cuda.txt
 # export CUDA_HOME=/usr/local/cuda
+
+# git clone --branch 0.9.4.dev0 https://github.com/M
 
 ## test gpu available
 # python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
