@@ -9,9 +9,6 @@
 # pip install --resume-retries 5 https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 # pip install --resume-retries 5 https://github.com/flashinfer-ai/flashinfer/releases/download/v0.2.2.post1/flashinfer_python-0.2.2.post1+cu124torch2.6-cp38-abi3-linux_x86_64.whl
 
-
-# pip install -r requirements.txt
-
 # cd your_path_to_save_vllm-dev
 # git clone https://github.com/Master-PLC/vllm-dev.git
 
@@ -19,13 +16,25 @@
 #### below two steps are enough for system cuda==12.4
 # pip install -r requirements/build.txt
 # pip install --no-build-isolation -e .
+### or
+# pip install uv
+# VLLM_USE_PRECOMPILED=1 uv pip install --no-build-isolation -e .
+### or
+# MAX_JOBS=4 pip install --no-build-isolation -e . 2>&1 | tee -a build.log
+### or
+# download https://wheels.vllm.ai/nightly/vllm-1.0.0.dev-cp38-abi3-manylinux1_x86_64.whl to somewhere
+# VLLM_PRECOMPILED_WHEEL_LOCATION=somewhere/vllm-1.0.0.dev-cp38-abi3-manylinux1_x86_64.whl VLLM_USE_PRECOMPILED=1 pip install --no-build-isolation -e . 2>&1 | tee -a build.log
+# 
 
-### maybe extra steps for other system cuda to install vllm, however, we haven't validated
+### maybe extra steps for other system cuda, however, we haven't validated
 # python use_existing_torch.py
 # pip install -r requirements/cuda.txt
 # export CUDA_HOME=/usr/local/cuda
 
-# git clone --branch 0.9.4.dev0 https://github.com/M
+# pip install -r requirements.txt
+
+# cd your_path_to_save_llamafactory, hope for version near to 0.9.4.dev0
+# git clone https://github.com/hiyouga/LLaMA-Factory.git
 
 ## test gpu available
 # python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
