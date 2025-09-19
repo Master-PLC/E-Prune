@@ -24,7 +24,7 @@
 ### or
 # download https://wheels.vllm.ai/nightly/vllm-1.0.0.dev-cp38-abi3-manylinux1_x86_64.whl to somewhere
 # VLLM_PRECOMPILED_WHEEL_LOCATION=somewhere/vllm-1.0.0.dev-cp38-abi3-manylinux1_x86_64.whl VLLM_USE_PRECOMPILED=1 pip install --no-build-isolation -e . 2>&1 | tee -a build.log
-# 
+# pip uninstall opencv-python-headless
 
 ### maybe extra steps for other system cuda, however, we haven't validated
 # python use_existing_torch.py
@@ -78,6 +78,7 @@ protobuf
 pyyaml
 pydantic<=2.10.6
 setproctitle
+opencv-python-headless
 ujson
 # api
 uvicorn
