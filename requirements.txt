@@ -31,10 +31,13 @@
 # pip install -r requirements/cuda.txt
 # export CUDA_HOME=/usr/local/cuda
 
-# pip install -r requirements.txt
-
 # cd your_path_to_save_llamafactory, hope for version near to 0.9.4.dev0
 # git clone https://github.com/hiyouga/LLaMA-Factory.git
+# cd LLaMA-Factory
+# pip install -e ".[torch,metrics]" --no-build-isolation
+
+## cd E-Prune
+# pip install -r requirements.txt
 
 ## test gpu available
 # python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
@@ -65,6 +68,7 @@ tiktoken
 modelscope>=1.14.0
 hf-transfer
 # python
+dotenv
 fire
 ipykernel
 isort
