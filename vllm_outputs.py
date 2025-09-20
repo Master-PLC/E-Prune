@@ -1,5 +1,10 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 from llamafactory.extras.misc import get_device_count
 from vllm import LLM, SamplingParams
+import os
+
 
 if __name__ == "__main__":
     prompts = [
@@ -22,7 +27,7 @@ if __name__ == "__main__":
         }
     )
 
-    model_name_or_path = "/data/home/Licheng/ckpts/deepseek-ai/DeepSeek-R1-0528-Qwen3-8B"  # Example model name
+    model_name_or_path = os.environ['MODEL_NAME_OR_PATH']  # Example model name
     llm = LLM(
         model=model_name_or_path,
         tensor_parallel_size=get_device_count(),

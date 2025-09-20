@@ -4,13 +4,35 @@
 # conda create -n enb python=3.10
 # conda activate enb
 
-# pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+# pip install torch==2.6.0+cu124 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
 # conda install cudatoolkit=12.4 -c anaconda
 # pip install --resume-retries 5 https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp310-cp310-linux_x86_64.whl
 # pip install --resume-retries 5 https://github.com/flashinfer-ai/flashinfer/releases/download/v0.2.2.post1/flashinfer_python-0.2.2.post1+cu124torch2.6-cp38-abi3-linux_x86_64.whl
 
+# pip install https://github.com/Dao-AILab/flash-attention/releases/download/v2.7.4.post1/flash_attn-2.7.4.post1+cu12torch2.6cxx11abiFALSE-cp311-cp311-linux_x86_64.whl
+
+## or
+# pip install psutil
+# NVCC_APPEND_FLAGS='-allow-unsupported-compiler' FLASH_ATTENTION_SKIP_CUDA_BUILD=1 pip install flash-attn==2.7.4.post1 --no-build-isolation --use-pep517
+# pip install flashinfer-python==0.2.2.post1 -i https://flashinfer.ai/whl/cu124/torch2.6/
+
 # cd your_path_to_save_vllm-dev
 # git clone https://github.com/Master-PLC/vllm-dev.git
+
+## if failed with network
+## cd to target dir and get head
+## git ls-tree HEAD csrc/composable_kernel | awk '{print $3}'
+## git clone xxx source_dir
+## git checkout head
+## cp -a source_dir target_dir
+## cd target_dr.parent
+## rm -rf target_dir/.git
+## git submodule deinit -f target_dir || true
+## git submodule absorbgitdirs target_dir
+## req=$(git ls-tree HEAD target_dir | awk '{print $3}')
+## git -C csrc/composable_kernel checkout "$req"
+
+## 事实上，只要下面的pip install --no-build-isolation -e . 2>&1 | tee -a build.log，不是网络问题就是安装版cuda和系统cuda不匹配
 
 # cd your_path_to_vllm-dev
 #### below two steps are enough for system cuda==12.4
